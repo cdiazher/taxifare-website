@@ -2,7 +2,7 @@ import streamlit as st
 import requests
 import pandas as pd
 import folium
-from streamlit_folium import folium_static
+from streamlit_folium import st_folium
 from datetime import datetime
 
 st.markdown("# Calculate your Taxi fare")
@@ -10,8 +10,9 @@ st.markdown("# Calculate your Taxi fare")
 col1, col2, col3, col4, col5 = st.columns([1,2,2,1,1])
 with col1:
     date = st.date_input("Pick-up Date", value="2025-02-08")
-    time = st.time_input("Pick-up Time", value="12:00:00")
-date_time = datetime.combine(date, time)
+    default_time = datetime.strptime("12:00:00", "%H:%M:%S").time()
+    time = st.time_input("Pick-up Time", value=default_time)
+    date_time = datetime.combine(date, time)
 with col2:
     pickup_longitude = st.number_input("Pick-up Longitude", value=-73.935242)
     pickup_latitude = st.number_input("Pick-up Latitude", value=40.730610)
@@ -65,4 +66,4 @@ folium.PolyLine(
     opacity=0.7,
 ).add_to(map)
 
-folium_static(map)
+st_folium(map)

@@ -37,10 +37,10 @@ parameters = {
 if st.button('Get Fare'):
     response = requests.get(url, params=parameters)
     if response.status_code == 200:
-            prediction = response.json()['fare']
-            st.success(f"${prediction:.2f}")
+        prediction = response.json()['fare']
+        st.success(f"${prediction:.2f}")
     else:
-            st.error("Try again.")
+        st.error("Try again.")
 
 map = folium.Map(location=[(pickup_latitude + dropoff_latitude) / 2,
                            (pickup_longitude + dropoff_longitude) / 2],

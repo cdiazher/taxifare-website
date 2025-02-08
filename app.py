@@ -46,7 +46,7 @@ with col5:
 
 map = folium.Map(location=[(pickup_latitude + dropoff_latitude) / 2,
                            (pickup_longitude + dropoff_longitude) / 2],
-                 zoom_start=20)
+                 zoom_start=15)
 folium.Marker(
     location=[pickup_latitude, pickup_longitude],
     popup="📍Pickup",
